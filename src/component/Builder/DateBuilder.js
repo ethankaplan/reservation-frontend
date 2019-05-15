@@ -1,55 +1,47 @@
 import React, {Component} from 'react'
 
-class SearchBar extends Component{
+class DateBuilder extends Component{
     state = {
         search:'',
         location:'',
         activity:'',
         cuisine:'',
-        activityResult:null,
-        dinnerResult:null
+        searched:false
 
 
       
     }
-     doSearch =async ()=>{
+    //  doSearch =async ()=>{
 
-            try {
+    //         try {
          
-                const res = await fetch(`/api/v1/l_${this.state.location}/a_${this.state.activity}`)
-              
-                const resJson = await res.json()
-               
-                const resDin = await fetch(`/api/v1/l_${this.state.location}/c_${this.state.cuisine}`)
-     
-                const resDinJson = await resDin.json()
-                
-                await this.setState({
-                    activityResult:resJson.data,
-                    dinnerResult:resDinJson.data
-                })
-                
-            } catch(err) {
-                console.log(err)
-                
-            }
-        }
+    //             const res = await fetch(`/api/v1/l_${this.state.location}/a_${this.state.activity}`)              
+    //             const resJson = await res.json()
+    //             const resDin = await fetch(`/api/v1/l_${this.state.location}/c_${this.state.cuisine}`)
+    //             const resDinJson = await resDin.json()
+    //             await this.setState({
+    //                 activityResult:resJson.data,
+    //                 dinnerResult:resDinJson.data,  
+    //             })
+    //         } catch(err) {
+    //             console.log(err)  
+    //         }
+    //     }
      
         
     
         handleChange = async(e) => {
             e.preventDefault()
             await this.setState({[e.currentTarget.name]: e.currentTarget.value});
-            
         }
+        
     
         handleSubmit = async(e)=>{
             e.preventDefault()
-            await this.doSearch()
+            await this.props.doSearch(this.state.location,this.state.activity,this.state.cuisine)
             console.log(this.state.dinnerResult)
             console.log(this.state.activityResult)
-            this.props.activityList(this.state.activityResult)
-            this.props.dinnerList(this.state.dinnerResult)
+            
         }
     
       render(){
@@ -66,10 +58,11 @@ class SearchBar extends Component{
                 <input type='text' name="cuisine" placeholder="Cuisine" 
                    onChange={this.handleChange} autoComplete="off"/>
                    <button type="submit" value="submit" hidden="hidden"/>
-                  
               </form></div>
+
           )
     
       }
 }
-export default SearchBar
+
+export default DateBuilder
