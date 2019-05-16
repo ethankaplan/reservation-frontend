@@ -5,28 +5,32 @@ import React from 'react';
     let string="*"
     for(let i=1;i<num;i++){
         string+="*"
-    }
-    return<span>{string}</span>
-}
-const disDol=(num)=>{
-    let string="$"
-    for(let i=1;i<num;i++){
-        string+="$"
+     
     }
     return<span>{string}</span>
 }
 
+const disCat=(place)=>{
+    let string = ""
+    for(let i = 0;i<place.categories.length;i++){
+        let temp =place.categories[i].title
+        string=string+", "+temp
+    }
+    return <span>{string}</span>
+}
+
 const FormOption = (props) => {
   return (
-    <input type="radio" value={`${this.props.place.id}`} name={`${this.props.formSubject}`}>
     <div>
-        <img height="60px" width="60px" src={`${this.props.place.image_url}`}/><br/>
-       <h3>{this.props.place.name}</h3> - {this.props.place.catagories.title}<br/>
-       {disStars(this.props.place.rating)} - {disDol(this.props.place.price)}
-        </div></input>
+    <input type="radio" name="place" value={props.place}/>
+         <img height="60px" width="60px" alt="place" src={`${props.place.image_url}`}/><br/>
+        <h3>{props.place.name}</h3> - <small>Catagories:{disCat(props.place)}</small><br/>
+        {disStars(props.place.rating)}
+    </div>
        
    
   )
 };
 
 export default FormOption;
+

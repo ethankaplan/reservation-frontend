@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
+import ViewResults from './ViewResults'
 
 class DateBuilder extends Component{
     state = {
@@ -6,7 +8,9 @@ class DateBuilder extends Component{
         location:'',
         activity:'',
         cuisine:'',
-        searched:false
+        searched:false,
+        dinnerResult:null,
+        activityResult:null
 
 
       
@@ -39,14 +43,24 @@ class DateBuilder extends Component{
         handleSubmit = async(e)=>{
             e.preventDefault()
             await this.props.doSearch(this.state.location,this.state.activity,this.state.cuisine)
-            console.log(this.state.dinnerResult)
-            console.log(this.state.activityResult)
+            // await this.setState({
+            //     dinnerResult:,
+            //     activityResult:this.props.activityList
+            // })
+            console.log(this.props.dinnerList)
+            console.log(this.props.activityList)
+            this.setState({
+                searched:true
+            })
+            
             
         }
     
       render(){
           return(
-              <div>
+            
+            <div>
+              <div className="entryForm">      
               <form onSubmit={this.handleSubmit}> 
                 <span className="formLabel">Location:</span>
                 <input type='text' name="location" placeholder="Location" 
@@ -59,7 +73,13 @@ class DateBuilder extends Component{
                    onChange={this.handleChange} autoComplete="off"/>
                    <button type="submit" value="submit" hidden="hidden"/>
               </form></div>
-
+            {this.state.searched &&
+            <div> <h2>{this.state.location}'s Activities</h2><br/>
+            <ViewResults places={this.props.activityList} loc={this.state.location}/><br/><hr/>
+            <h2>{this.state.location}'s {this.state.cuisine} Options</h2><br/>
+            <ViewResults places={this.props.dinnerList}/></div>
+            }
+            </div>
           )
     
       }

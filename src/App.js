@@ -40,8 +40,7 @@ class App extends Component {
             dinnerJ:resDinJson.data,
             location  
         })
-        console.log(this.state.activityJ)
-        console.log(this.state.dinnerJ)
+        
     } catch(err) {
         console.log(err)  
     }
@@ -71,8 +70,13 @@ class App extends Component {
           <Route exact path={routes.HOME} render={() => <div>HOME</div>} />
           <Route exact path={routes.USERS} render={() => <div>USER</div>} />
           <Route exact path={`${routes.USERS}/:id`} render={() => <ShowUser />} />
+          
           <Route exact path={routes.POSTS} render={() => 
                   <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} location={this.state.location} doSearch={this.doSearch}/>} />
+            <Route exact path={`${routes.POSTS}/buildresults`} render={() => 
+                  <div><ViewResults places={this.state.activityJ}/><br/><hr/>
+                  <ViewResults places={this.state.dinnerJ}/></div>} />
+         
          <Route exact path={routes.REGISTER} render={() => <Register currentUser={this.state.currentUser} doSetCurrentUser={this.doSetCurrentUser}/>} />
           <Route exact path={routes.LOGIN} render={() => <Login currentUser={this.state.currentUser} doSetCurrentUser={this.doSetCurrentUser}/>} />
           <Route render={() => <div>NOT FOUND</div>} />
