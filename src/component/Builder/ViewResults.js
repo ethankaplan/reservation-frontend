@@ -11,9 +11,13 @@ const ViewResults = (props)=>{
 
     
         return(
+            <div>
+               
+            
             <form>
                 {allResults}
             </form>
+            </div>
     )
 }
 
