@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 import './NavBar.css'
 
-const NavBar = ({currentUser}) =>
+const NavBar = ({currentUser,doLogout}) =>
   <div>
     <h5>NAVBAR</h5>
     
@@ -14,8 +14,13 @@ const NavBar = ({currentUser}) =>
     <NavLink to={routes.POSTS} activeClassName="selected">POSTS </NavLink>
     {
       currentUser
-        ? <span>hello {currentUser.username}</span>
+        ? <span>hello {currentUser.username} <button onClick={doLogout}>LOGOUT</button></span>
         :  <NavLink to={'/login'} activeClassName="selected">login </NavLink>
+    }
+    {
+      currentUser
+        ? <span></span>
+        :  <NavLink to={'/register'} activeClassName="selected">register </NavLink>
     }
    
   </div>

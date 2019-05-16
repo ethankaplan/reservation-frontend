@@ -16,22 +16,32 @@ class Login extends Component {
 
     onSubmit = async (e) => {
         e.preventDefault();
-        const loginResponse = await fetch('/users/login', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(this.state),
-            headers:{
-                "Content-type" : 'application/json'
-            }
+        const loginResponse = await fetch('/users/login',{
+          method: "POST",
+          credentials: 'include',
+          
+          body: JSON.stringify(this.state),
+          headers: {
+            "Content-Type" : 'application/json'
+          }
         })
+        console.log("hit1")
 
-        const parsedResponse = await loginResponse.json();
-        if(parsedResponse.success) {
-          this.props.doSetCurrentUser(parsedResponse.user)
-            this.setState({
-                logged: true,
-            })
-        }
+         const parsedResponse = await loginResponse.json();
+         console.log(parsedResponse)
+
+            if(parsedResponse.user){
+              //console.log(parsedResponse)
+                this.props.doSetCurrentUser(parsedResponse.user)
+                console.log("logged")
+                this.setState({
+                  logged: true
+                })
+            } else {
+              this.setState({
+                message: 'Try again'
+              })
+            }
     }
 
     render() {

@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-
+import FormOption from './FormOption'
 class ViewResults extends Component{
     state={
         selectedDin:null,
         selectedAct:null
         
     }
-    // choiceList = (props) => {
+    choiceList = (props) => {
         
-    //   const listItems = props.gifs.map((place) => {
-    //     return <FormOption key={place.id} ={image} />
-    //   })}
+      const listItems = props.map((place,formSubject) => {
+        return <FormOption key={place.id} place={place} formSubject={formSubject}/>
+      })}
 
 
 
@@ -20,12 +20,11 @@ class ViewResults extends Component{
             <div>
             <form>
                 <fieldset id="actSelect">
-                
-                
+                {this.choiceList(this.props.activityJ,"actSelect")}
                 </fieldset>
                 <br/>
                 <fieldset id="dinSelect">
-                
+                {this.choiceList(this.props.dinnerJ,"dinSelect")}
                 
                 </fieldset>
             
