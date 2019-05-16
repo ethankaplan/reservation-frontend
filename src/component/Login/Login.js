@@ -16,7 +16,7 @@ class Login extends Component {
 
     onSubmit = async (e) => {
         e.preventDefault();
-        const loginResponse = await fetch('https://datebackend.herokuapp.com//users/login',{
+        const loginResponse = await fetch('process.env.REACT_APP_BACKEND_URL/users/login',{
           method: "POST",
           credentials: 'include',
           

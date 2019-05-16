@@ -16,7 +16,7 @@ class Register extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-    const registerResponse = await fetch('https://datebackend.herokuapp.com/users', {
+    const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(this.state),
