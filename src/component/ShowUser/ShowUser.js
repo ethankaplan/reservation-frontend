@@ -14,7 +14,7 @@ class ShowUser extends Component {
 
   doGetUser = async () => {
     try {
-      const user = await fetch(`/users/${this.props.match.params.id}`)
+      const user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${this.props.match.params.id}`)
       const parsedUser = await user.json()
       return parsedUser 
     } catch(err) {

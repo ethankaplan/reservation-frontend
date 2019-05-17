@@ -29,11 +29,12 @@ class App extends Component {
 
     try {
       console.log("Hit 1")
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1//api/v1/l_${location}/a_${activity}`)  
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/a_${activity}`)  
         console.log("Hit 2")            
         const resJson = await res.json()
         console.log("Hit 3")
-        const resDin = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1//api/v1/l_${location}/c_${cuisine}`)
+        const resDin = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/c_${cuisine}`)
+
         console.log("Hit 4")
         const resDinJson = await resDin.json()
         await this.setState({

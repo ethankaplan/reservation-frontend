@@ -74,10 +74,10 @@ class DateBuilder extends Component{
                    <button type="submit" value="submit" hidden="hidden"/>
               </form></div>
             {this.state.searched &&
-            <div> <h2>{this.state.location}'s Activities</h2><br/>
-            <ViewResults places={this.props.activityList} loc={this.state.location}/><br/><hr/>
+            <form> <h2>{this.state.location}'s Activities</h2><br/>
+            <ViewResults places={this.props.activityList} title="activity"/><br/><hr/>
             <h2>{this.state.location}'s {this.state.cuisine} Options</h2><br/>
-            <ViewResults places={this.props.dinnerList}/></div>
+            <ViewResults places={this.props.dinnerList} title="dinner"/></form>
             }
             </div>
           )

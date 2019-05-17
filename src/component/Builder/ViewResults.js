@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
 import FormOption from './FormOption'
-const ViewResults = (props)=>{
+class ViewResults extends Component{
 
-    const allResults = props.places.map((place)=>{
-        return <FormOption key={place.id} place={place}/> 
+    allResults = this.props.places.map((place)=>{
+        return <FormOption key={place.id} place={place} name={this.props.title}/>
     })
 
 
 
 
-    
+    render(){
         return(
             <div>
                
             
-            <form>
-                {allResults}
-            </form>
+            <fieldset className={this.props.title}>
+                {this.allResults}
+            </fieldset>
             </div>
     )
+}
 }
 
 export default ViewResults
