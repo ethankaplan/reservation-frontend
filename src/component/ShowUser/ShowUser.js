@@ -24,8 +24,8 @@ class ShowUser extends Component {
   render() {
     return (
       <div>
+        Username:<br/>
         <h1>{this.state.user.username}</h1>
-        <h1>{this.state.user.password}</h1>
       </div>
     )
   }

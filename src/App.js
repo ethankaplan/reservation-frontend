@@ -7,7 +7,7 @@ import ShowUser from './component/ShowUser/ShowUser'
 import DateBuilder from './component/Builder/DateBuilder'
 import ViewResults from './component/Builder/ViewResults'
 import Register from "./component/Register/Register"
-
+import { Redirect } from 'react-router-dom'
 import * as routes from './constants/routes'
 import './App.css';
 import { isNull } from 'util';
@@ -19,8 +19,10 @@ class App extends Component {
     buildingDate:{
       activityJ:null,
       dinnerJ:null,
+      location:"",
 
-      location:""
+      dinnerObj:null,
+      activityObj:null
     }
     
   }
@@ -33,7 +35,8 @@ class App extends Component {
         console.log("Hit 2")            
         const resJson = await res.json()
         console.log("Hit 3")
-        const resDin = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/c_${cuisine}`)
+        const resDin = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/c_${cuisine}`)
 
         console.log("Hit 4")
         const resDinJson = await resDin.json()
@@ -47,6 +50,21 @@ class App extends Component {
         console.log(err)  
     }
 }
+
+formHandleSubmit=async(e,act,din)=>{
+  e.preventDefault();
+  console.log(din)
+  await this.setState({
+    activityObj:act,
+    dinnerObj:din
+  })
+  console.log(this.state.dinnerObj)
+  return(
+  <Redirect to={`/users/${this.state.currentUser._id}`} />)
+  
+}
+
+
 
   doSetCurrentUser = user =>
     this.setState({
@@ -74,10 +92,10 @@ class App extends Component {
           <Route exact path={`${routes.USERS}/:id`} render={() => <ShowUser />} />
           
           <Route exact path={routes.POSTS} render={() => 
-                  <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} location={this.state.location} doSearch={this.doSearch}/>} />
+                  <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} location={this.state.location} doSearch={this.doSearch} formHandleSubmit={this.formHandleSubmit}/>} />
             <Route exact path={`${routes.POSTS}/buildresults`} render={() => 
                   <div><ViewResults places={this.state.activityJ}/><br/><hr/>
-                  <ViewResults places={this.state.dinnerJ}/></div>} />
+                  <ViewResults places={this.state.dinnerJ} /></div>} />
          
          <Route exact path={routes.REGISTER} render={() => <Register currentUser={this.state.currentUser} doSetCurrentUser={this.doSetCurrentUser}/>} />
           <Route exact path={routes.LOGIN} render={() => <Login currentUser={this.state.currentUser} doSetCurrentUser={this.doSetCurrentUser}/>} />

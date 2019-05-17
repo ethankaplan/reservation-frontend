@@ -22,10 +22,10 @@ const disCat=(place)=>{
 const FormOption = (props) => {
   return (
     <div>
-    <input type="radio" name={props.name} value={props.place}/>
+    <input type="radio" name={props.name} value={props.place} onChange={props.handleChange}/>
          <img height="60px" width="60px" alt="place" src={`${props.place.image_url}`}/>
         <h3>{props.place.name}</h3> - <small>Catagories:{disCat(props.place)}</small>
-        {disStars(props.place.rating)}
+        {disStars(props.place.rating)}<br/>
     </div>
        
    

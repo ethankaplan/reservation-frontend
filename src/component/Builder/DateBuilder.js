@@ -10,8 +10,9 @@ class DateBuilder extends Component{
         cuisine:'',
         searched:false,
         dinnerResult:null,
-        activityResult:null
-
+        activityResult:null,
+        activityObj:null,
+        dinnerObj:null
 
       
     }
@@ -33,15 +34,21 @@ class DateBuilder extends Component{
     //     }
      
         
-    
-        handleChange = async(e) => {
-            e.preventDefault()
-            await this.setState({[e.currentTarget.name]: e.currentTarget.value});
-        }
+    handleChange = async(e) => {
+        e.preventDefault()
+        this.setState({[e.currentTarget.name]: e.currentTarget.value});
+        console.log({[e.currentTarget.name]: e.currentTarget.value})
+      
+    }
+        
         
     
         handleSubmit = async(e)=>{
             e.preventDefault()
+            this.setState({
+                searched:false
+            })
+            console.log(this.state.location)
             await this.props.doSearch(this.state.location,this.state.activity,this.state.cuisine)
             // await this.setState({
             //     dinnerResult:,
@@ -74,10 +81,13 @@ class DateBuilder extends Component{
                    <button type="submit" value="submit" hidden="hidden"/>
               </form></div>
             {this.state.searched &&
-            <form> <h2>{this.state.location}'s Activities</h2><br/>
-            <ViewResults places={this.props.activityList} title="activity"/><br/><hr/>
-            <h2>{this.state.location}'s {this.state.cuisine} Options</h2><br/>
-            <ViewResults places={this.props.dinnerList} title="dinner"/></form>
+            <form onSubmit={(e)=>this.props.formHandleSubmit(e,this.state.activityObj,this.state.dinnerObj)}> 
+                <button type="submit">SUBMIT DATE</button>
+                <h2>{this.state.location}'s Activities</h2><br/>
+                <ViewResults places={this.props.activityList} handleChange={this.handleChange} name="activityObj"/><br/><hr/>
+                <h2>{this.state.location}'s {this.state.cuisine} Options</h2><br/>
+                <ViewResults places={this.props.dinnerList} handleChange={this.handleChange} name="dinnerObj"/>
+            </form>
             }
             </div>
           )
