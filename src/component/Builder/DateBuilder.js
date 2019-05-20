@@ -40,6 +40,30 @@ class DateBuilder extends Component{
         console.log({[e.currentTarget.name]: e.currentTarget.value})
       
     }
+
+    handleDinChange = async(e,din) => {
+        e.preventDefault()
+        console.log(din)
+        await this.setState({
+            dinnerObj:din
+        });
+    }
+
+    handleActChange = async(e,act) => {
+        e.preventDefault()
+        console.log(act)
+        await this.setState({
+            activityObj:act
+        });
+        
+      
+    }
+    handleRadioChange = async(e,name,obj) => {
+        e.preventDefault()
+        await this.setState({[e.currentTarget.name]: e.currentTarget.value});
+        await console.log({[e.currentTarget.name]: e.currentTarget.value})
+      
+    }
         
         
     
@@ -80,13 +104,19 @@ class DateBuilder extends Component{
                    onChange={this.handleChange} autoComplete="off"/>
                    <button type="submit" value="submit" hidden="hidden"/>
               </form></div>
+
+
             {this.state.searched &&
-            <form onSubmit={(e)=>this.props.formHandleSubmit(e,this.state.activityObj,this.state.dinnerObj)}> 
+            <form onSubmit={(e)=>this.props.formHandleSubmit(e,this.state.activityObj,this.state.dinnerObj,this.state.location)}> 
                 <button type="submit">SUBMIT DATE</button>
                 <h2>{this.state.location}'s Activities</h2><br/>
-                <ViewResults places={this.props.activityList} handleChange={this.handleChange} name="activityObj"/><br/><hr/>
+                <ViewResults places={this.props.activityList} 
+                    handleChange={this.handleActChange}  name="activityObj"
+                />
+                <br/><hr/>
                 <h2>{this.state.location}'s {this.state.cuisine} Options</h2><br/>
-                <ViewResults places={this.props.dinnerList} handleChange={this.handleChange} name="dinnerObj"/>
+                <ViewResults places={this.props.dinnerList} 
+                    handleChange={this.handleDinChange} name="dinnerObj"/>
             </form>
             }
             </div>

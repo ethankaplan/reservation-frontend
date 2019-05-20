@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 class ShowUser extends Component {
   state = {
-    user: {}
+    user:{}
   }
 
   componentDidMount() {
@@ -14,7 +14,7 @@ class ShowUser extends Component {
 
   doGetUser = async () => {
     try {
-      const user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${this.props.match.params.id}`)
+      const user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/view/${this.props.match.params.id}`)
       const parsedUser = await user.json()
       return parsedUser 
     } catch(err) {
@@ -25,7 +25,10 @@ class ShowUser extends Component {
     return (
       <div>
         Username:<br/>
-        <h1>{this.state.user.username}</h1>
+        <h1>{this.state.user.username}</h1><br/>
+        Dates you've made:<br/>
+
+
       </div>
     )
   }
