@@ -2,27 +2,52 @@ import React, {Component} from 'react'
 import UserItem from './UserItem'
 class ViewUsers extends Component{
     state={
-        allUsers=null
+        allUsers: {
+            "user": [
+                {
+                    "dates": [],
+                    "_id": "5ce233add3d37012c9cbca01",
+                    "username": "1",
+                    "password": "1",
+                    "__v": 0
+                },
+                {
+                    "dates": [],
+                    "_id": "5ce23563d3d37012c9cbca02",
+                    "username": "1",
+                    "password": "1",
+                    "__v": 0
+                }
+            ]
+        }
     }
-    getAllUsers = ()=>{
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/getall`)  
+    
+    getAllUsers =async ()=>{
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/getall`)
+        console.log(res)
+        this.setState({
+            allUsers:res
+        })
+        
     }
-    allResults = this.props.places.map((place)=>{
-        return <FormOption key={place.id} place={place} name={this.props.name}  handleChange={this.props.handleChange}/>
+    
+    allResults = this.state.allUsers.user.map((user)=>{
+        
+        return <UserItem key={user.id} user={user}/>
     })
 
 
 
 
     render(){
+        
+        console.log(this.allUsers)
         return(
-            <div>
+            <ul>
                
-            
-            <fieldset className={this.props.name}>
                 {this.allResults}
-            </fieldset>
-            </div>
+            
+            </ul>
     )
 }
 }

@@ -7,7 +7,7 @@ import ShowUser from './component/ShowUser/ShowUser'
 import DateBuilder from './component/Builder/DateBuilder'
 import ViewResults from './component/Builder/ViewResults'
 import Register from "./component/Register/Register"
-
+import ViewUsers from './component/ViewUsers/ViewUsers'
 import * as routes from './constants/routes'
 import './App.css';
 import { isNull } from 'util';
@@ -58,12 +58,13 @@ doCreateDate=async()=>{
         activity:this.state.activityObj,
         dinner:this.state.dinnerObj
   }
+
   
-  
+  console.log(newDate)
   
     try {
-      
-        const postToUser=await fetch(`http://localhost:3001/users/createdate/${this.state.currentUser._id}`,{
+      console.log('create hit')
+        const postToUser=await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/createDate/${this.state.currentUser._id}`,{
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(newDate),
@@ -71,11 +72,12 @@ doCreateDate=async()=>{
                 'Content-Type': 'application/json'
             }
         })
-        
+        console.log(postToUser)
     } catch (e) {
         console.log(e)
 }
-  this.props.history.push(`${routes.USERS}/${this.state.currentUser._id}`) 
+
+  this.props.history.push(`${routes.USERS}/view/${this.state.currentUser._id}`) 
 }
 
 
@@ -115,6 +117,8 @@ formHandleSubmit=async(e,act,din,loc)=>{
 
   }
 
+  
+
   render() {
     return (
       <div>
@@ -122,7 +126,7 @@ formHandleSubmit=async(e,act,din,loc)=>{
         <Switch>
           <Route exact path={routes.ROOT} render={() => <div>ROOT</div>} />
           <Route exact path={routes.HOME} render={() => <div>HOME</div>} />
-          <Route exact path={routes.USERS} render={() => <div>USER</div>} />
+          <Route exact path={routes.USERS} render={() => <ViewUsers/>} />
           <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser />} />
           
           <Route exact path={routes.POSTS} render={() => 

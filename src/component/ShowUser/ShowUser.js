@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
+import DateList from '../ShowMadeDates/DateList'
 
 
 class ShowUser extends Component {
@@ -23,11 +24,13 @@ class ShowUser extends Component {
   }
   render() {
     return (
+      //pass datelist with {this.state.user._id}
       <div>
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
         Dates you've made:<br/>
-
+        <DateList userID={this.state.user._id}/>
+        
 
       </div>
     )
