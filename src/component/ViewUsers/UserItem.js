@@ -8,6 +8,7 @@ class UserItem extends Component{
     
 
      render(){
+        
     return (
         <li>
             <Link to={`${routes.USERS}/view/${this.props.user._id}`}>

@@ -14,12 +14,12 @@ class DateItem extends Component{
         <li>
             Location:{this.props.loc}<br/>
             <ul>Activity:<br/>
-            <li>{this.props.act.name} for some *CATEGORIES*<br/>
+            <li>{this.props.act.name} for some {this.props.act.categories[0].title}<br/>
             {this.props.act.location.address1}, {this.props.act.location.zip_code}</li></ul>
             <ul>Dinner:
-            <li>{this.props.din.name} for some *CATEGORIES*<br/>
+            <li>{this.props.din.name} for some {this.props.din.categories[0].title}<br/>
             {this.props.din.location.address1}, {this.props.din.location.zip_code}</li></ul>
-            
+            <button>DELETE</button>
             
             
            

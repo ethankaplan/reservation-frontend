@@ -37,6 +37,7 @@ class FormOption extends Component{
             <img height="60px" width="60px" alt="place" src={`${this.props.place.image_url}`}/>
             <h3>{this.props.place.name}</h3> - <small>Catagories:{this.disCat(this.props.place)}</small>
             {this.disStars(this.props.place.rating)}<br/>
+            <hr/>
         </div>
         
     
