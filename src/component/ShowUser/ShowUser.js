@@ -30,7 +30,7 @@ class ShowUser extends Component {
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
         Dates you've made:<br/>
-        <DateList dates={this.state.user.dates}/>
+        <DateList deleteDate={this.props.deleteDate} dates={this.state.user.dates} id={this.state.user._id}/>
         
 
       </div>

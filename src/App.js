@@ -51,6 +51,19 @@ class App extends Component {
     }
 }
 
+deleteDate = async (date,id) => {
+  const deletedDate = await fetch(`/users/delete/${id}/${date}`, {
+    method: "DELETE"
+  });
+  const parsedResponse = await deletedDate.json();
+  console.log(parsedResponse, "parsedResponse in deleteDate");
+  this.setState({
+    currentUser: parsedResponse.user,
+  });
+  
+  this.props.history.push(`${routes.USERS}/view/${id}`) 
+};
+
 doCreateDate=async()=>{
   
   let newDate={
@@ -58,6 +71,10 @@ doCreateDate=async()=>{
         activity:this.state.activityObj,
         dinner:this.state.dinnerObj
   }
+
+
+
+
 
   
   console.log(newDate)
@@ -127,7 +144,7 @@ formHandleSubmit=async(e,act,din,loc)=>{
           <Route exact path={routes.ROOT} render={() => <div>ROOT</div>} />
           <Route exact path={routes.HOME} render={() => <div>HOME</div>} />
           <Route exact path={routes.USERS} render={() => <ViewUsers/>} />
-          <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser />} />
+          <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser deleteDate={this.deleteDate}/>} />
           
           <Route exact path={routes.POSTS} render={() => 
                   <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} location={this.state.location} doSearch={this.doSearch} formHandleSubmit={this.formHandleSubmit}/>} />

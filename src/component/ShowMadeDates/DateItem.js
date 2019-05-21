@@ -19,7 +19,7 @@ class DateItem extends Component{
             <ul>Dinner:
             <li>{this.props.din.name} for some {this.props.din.categories[0].title}<br/>
             {this.props.din.location.address1}, {this.props.din.location.zip_code}</li></ul>
-            <button>DELETE</button>
+            
             
             
            
