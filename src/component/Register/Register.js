@@ -5,7 +5,8 @@ class Register extends Component {
   state = {
     username: '',
     password: '',
-    logged: false
+    logged: false,
+    message:''
   }
 
   changeHandler = e => {
@@ -33,6 +34,11 @@ class Register extends Component {
             logged: true,
         })
     }
+    else{
+      this.setState({
+        message:parsedResponse.message
+      })
+    }
 }
 
   render() {
@@ -43,12 +49,14 @@ class Register extends Component {
         {
           this.state.logged
             ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
-            : <RegisterForm 
+            : <div>
+              <p>{this.state.message}</p>
+              <RegisterForm 
                 changeHandler={this.changeHandler}
                 onSubmit={this.onSubmit}
                 username={username}
                 password={password}
-              />
+              /></div>
         }
       </div>
 
