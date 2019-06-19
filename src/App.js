@@ -72,10 +72,6 @@ doCreateDate=async()=>{
         dinner:this.state.dinnerObj
   }
 
-
-
-
-
   
   console.log(newDate)
   

@@ -5,7 +5,9 @@ import * as routes from '../../constants/routes'
 import './NavBar.css'
 
 const NavBar = ({currentUser,doLogout}) =>
+
   <div>
+
     <h5>NAVBAR</h5>
     
     <NavLink exact activeClassName="selected" to={routes.ROOT}>ROOT</NavLink>
@@ -26,3 +28,4 @@ const NavBar = ({currentUser,doLogout}) =>
   </div>
 
 export default NavBar
+
