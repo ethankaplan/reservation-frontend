@@ -30,15 +30,15 @@ class App extends Component {
   doSearch =async (location, activity,cuisine)=>{
 
     try {
-      console.log("Hit 1")
+      
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/a_${activity}`)  
-        console.log("Hit 2")            
+        
         const resJson = await res.json()
-        console.log("Hit 3")
+        
         const resDin = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/api/v1/l_${location}/c_${cuisine}`)
 
-        console.log("Hit 4")
+      
         const resDinJson = await resDin.json()
         await this.setState({
             activityJ:resJson.data,
@@ -137,7 +137,6 @@ formHandleSubmit=async(e,act,din,loc)=>{
       <div>
         <NavBar currentUser={this.state.currentUser} doLogout={this.doLogout}/><br/>
         <Switch>
-          <Route exact path={routes.ROOT} render={() => <div>ROOT</div>} />
           <Route exact path={routes.HOME} render={() => <div>HOME</div>} />
           <Route exact path={routes.USERS} render={() => <ViewUsers/>} />
           <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser deleteDate={this.deleteDate}/>} />
