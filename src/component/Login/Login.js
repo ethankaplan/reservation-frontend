@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
+import {Grid, GridColumn} from 'semantic-ui-react'
 
 class Login extends Component {
     state = {
@@ -51,12 +52,28 @@ class Login extends Component {
       return (
         this.state.logged
         ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
-        : <form onSubmit={this.onSubmit}>
-          <div>{this.state.message}</div>
-            <input type="text" name="username" value={username} onChange={this.changeHandler} />
-            <input type="password" name="password" value={password} onChange={this.changeHandler} />
+        
+        :  <div><div>{this.state.message}</div>
+        <Grid columns={2}>
+         
+          <form onSubmit={this.onSubmit}>
+          <Grid.Row>
+            <Grid.Column>
+              Username: 
+              </Grid.Column><Grid.Column>
+                <input type="text" name="username" value={username} onChange={this.changeHandler} />
+            </Grid.Column>
+            </Grid.Row><Grid.Row>
+            <Grid.Column>
+                Password: </Grid.Column> <Grid.Column>
+                <input type="password" name="password" value={password} onChange={this.changeHandler} />
+                
+            </Grid.Column>
+            </Grid.Row>
             <button type='submit'>Submit</button>
-          </form>
+              </form>
+        </Grid>
+        </div>
       )
     }
 }

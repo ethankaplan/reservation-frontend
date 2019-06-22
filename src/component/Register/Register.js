@@ -50,6 +50,7 @@ class Register extends Component {
           this.state.logged
             ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
             : <div>
+              Make a new account:
               <p>{this.state.message}</p>
               <RegisterForm 
                 changeHandler={this.changeHandler}

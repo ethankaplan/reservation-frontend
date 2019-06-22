@@ -8,6 +8,8 @@ import DateBuilder from './component/Builder/DateBuilder'
 import ViewResults from './component/Builder/ViewResults'
 import Register from "./component/Register/Register"
 import ViewUsers from './component/ViewUsers/ViewUsers'
+import Landing from './component/Landing/Landing'
+
 import * as routes from './constants/routes'
 import './App.css';
 import { isNull } from 'util';
@@ -15,7 +17,7 @@ import { isNull } from 'util';
 
 class App extends Component {
   state = {
-    currentUser: null,
+    currentUser: {},
     buildingDate:{
       activityJ:null,
       dinnerJ:null,
@@ -121,7 +123,7 @@ formHandleSubmit=async(e,act,din,loc)=>{
     })
     doLogout=()=>{
       this.setState({
-        currentUser:null
+        currentUser:{}
       })
       //~~~Change this to route~~~
       this.props.history.push(routes.LOGIN)
@@ -137,12 +139,12 @@ formHandleSubmit=async(e,act,din,loc)=>{
       <div>
         <NavBar currentUser={this.state.currentUser} doLogout={this.doLogout}/><br/>
         <Switch>
-          <Route exact path={routes.HOME} render={() => <div>HOME</div>} />
+          <Route exact path={routes.HOME} render={() => <Landing currentUser={this.state.currentUser} doSetCurrentUser={this.doSetCurrentUser}/>} />
           <Route exact path={routes.USERS} render={() => <ViewUsers/>} />
-          <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser deleteDate={this.deleteDate}/>} />
+          <Route exact path={`${routes.USERS}/view/:id`} render={() => <ShowUser currentUser={this.state.currentUser} deleteDate={this.deleteDate}/>} />
           
           <Route exact path={routes.POSTS} render={() => 
-                  <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} location={this.state.location} doSearch={this.doSearch} formHandleSubmit={this.formHandleSubmit}/>} />
+                  <DateBuilder activityList={this.state.activityJ} dinnerList={this.state.dinnerJ} currentUser={this.state.currentUser} location={this.state.location} doSearch={this.doSearch} formHandleSubmit={this.formHandleSubmit}/>} />
             <Route exact path={`${routes.POSTS}/buildresults`} render={() => 
                   <div><ViewResults places={this.state.activityJ}/><br/><hr/>
                   <ViewResults places={this.state.dinnerJ} /></div>} />

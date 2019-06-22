@@ -58,7 +58,7 @@ render(){
           onClick={this.handleItemClick}
         >
         {
-          this.props.currentUser
+          this.props.currentUser._id
             ? <span>hello {this.props.currentUser.username} <button onClick={this.props.doLogout}>LOGOUT</button></span>
             :  <NavLink to={'/login'} activeClassName="selected">login </NavLink>
         }   
@@ -69,7 +69,7 @@ render(){
           onClick={this.handleItemClick}
         >
         {
-          this.props.currentUser
+          this.props.currentUser._id
           ? <span></span>
           :  <NavLink to={'/register'} activeClassName="selected">Register </NavLink>
         }

@@ -13,7 +13,7 @@ class DateList extends Component{
 
 
     render(){
-        console.log(this.state.allDates)
+        
         let allResults=null
         if(typeof this.props.dates !== 'undefined'){
             if(this.props.dates.length>0){

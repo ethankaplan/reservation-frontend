@@ -23,13 +23,14 @@ class ShowUser extends Component {
     }
   }
   render() {
-    console.log(this.state.user.dates)
+    console.log(this.props.currentUser)
+    console.log(this.state.user)
     return (
       
       <div>
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
-        Dates you've made:<br/>
+        Dates {this.props.match.params.id===this.props.currentUser._id? "you've":"they've"} made:<br/>
         <DateList deleteDate={this.props.deleteDate} dates={this.state.user.dates} id={this.state.user._id}/>
         
 
