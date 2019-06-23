@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 
 import * as routes from '../../constants/routes'
 import './NavBar.css'
@@ -58,7 +58,7 @@ render(){
         {
           this.props.currentUser._id
             ? <Menu.Menu><Menu.Item ><span>Logged in as {this.props.currentUser.username}</span></Menu.Item>
-            <Menu.Item><button onClick={this.props.doLogout}>LOGOUT</button></Menu.Item></Menu.Menu>
+            <Menu.Item><Button color="grey" onClick={this.props.doLogout}>LOGOUT</Button></Menu.Item></Menu.Menu>
             :  
             <Menu.Item
                 name='Login'
@@ -69,18 +69,19 @@ render(){
             </Menu.Item>
 
         }
-        <Menu.Item
+          {this.props.currentUser._id
+          ?
+        
+        
+          null
+          :  <Menu.Item
           name='Register'
           
           active={activeItem === 'Register'}
           onClick={this.handleItemClick}
-        >
-        {
-          this.props.currentUser._id
-          ? <span></span>
-          :  <NavLink to={'/register'} activeClassName="selected">Register </NavLink>
+        ><NavLink to={'/register'} activeClassName="selected">Register </NavLink></Menu.Item>
         }
-        </Menu.Item>
+        
         <Menu.Menu position="right" >
           <Menu.Item >
           Make a Date App
