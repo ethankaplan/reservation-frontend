@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Register from '../Register/Register'
 import DateBuilder from '../Builder/DateBuilder'
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image, Container} from 'semantic-ui-react'
 
 
 class Landing extends Component{
@@ -10,7 +10,8 @@ class Landing extends Component{
 
     render(){
         return(
-            <div style={{marginLeft:'1em'}}>
+            
+                <Container textAlign='center' style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
             <Grid columns={2} floated="left" padded>
                 <Grid.Column>
                 
@@ -33,7 +34,8 @@ class Landing extends Component{
 
             </Grid.Column>
             </Grid>
-            </div>
+            </Container>
+            
         )
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import {Grid, GridColumn} from 'semantic-ui-react'
+import {Grid, GridColumn,Container} from 'semantic-ui-react'
 
 class Login extends Component {
     state = {
@@ -50,30 +50,38 @@ class Login extends Component {
     render() {
       const { username, password } = this.state
       return (
-        this.state.logged
+        <Container textAlign='center' style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+          <h2>Login</h2>
+        {this.state.logged
         ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
         
-        :  <div style={{marginLeft:'1em'}}><div>{this.state.message}</div>
-        <Grid columns={2}>
+        :  <div>{this.state.message}</div>}
+        
          
           <form onSubmit={this.onSubmit}>
-          <Grid.Row>
-            <Grid.Column>
+          <Grid  >
+          <Grid.Row columns={2} >
+            <Grid.Column textAlign='right' >
               Username: 
-              </Grid.Column><Grid.Column>
+              </Grid.Column>
+              <Grid.Column textAlign='left'>
                 <input type="text" name="username" value={username} onChange={this.changeHandler} />
             </Grid.Column>
-            </Grid.Row><Grid.Row>
-            <Grid.Column>
-                Password: </Grid.Column> <Grid.Column>
+            </Grid.Row><Grid.Row columns={2}>
+            <Grid.Column textAlign='right'>
+                Password: </Grid.Column> <Grid.Column textAlign='left'>
                 <input type="password" name="password" value={password} onChange={this.changeHandler} />
                 
             </Grid.Column>
             </Grid.Row>
+            </Grid><br/>
             <button type='submit'>Submit</button>
+            
+            
               </form>
-        </Grid>
-        </div>
+        
+        
+        </Container>
       )
     }
 }
