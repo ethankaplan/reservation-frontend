@@ -79,21 +79,8 @@ class DateBuilder extends Component{
       render(){
           return(
             
-            <div style={{marginLeft:'1em'}}>
-                
-              {/* <div className="entryForm">      
-              <form onSubmit={this.handleSubmit}> 
-                <span className="formLabel">Location:</span>
-                <input type='text' name="location" placeholder="Location" 
-                   onChange={this.handleChange} autoComplete="off" /><br/>
-                Date Activity:
-                <input type='text' name="activity" placeholder="Activity" 
-                   onChange={this.handleChange} autoComplete="off"/><br/>
-                Cuisine:
-                <input type='text' name="cuisine" placeholder="Cuisine" 
-                   onChange={this.handleChange} autoComplete="off"/>
-                   <button type="submit" value="submit" hidden="hidden"/>
-              </form></div> */}
+            <div style={{marginLeft:'1em', marginRight:'1em'}}>
+              
 
               <Form onSubmit ={ (e) => this.handleSubmit(e)}
                     >
@@ -119,7 +106,7 @@ class DateBuilder extends Component{
                            onChange={this.handleChange} 
                            autoComplete="off"/>
                 </Form.Field>
-                <Form.Button content='Submit' type='submit' type='hidden'/>
+                <Form.Button content='Search' type='submit' type='hidden'/>
             </Form>
               
             
