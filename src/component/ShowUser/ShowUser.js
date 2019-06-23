@@ -27,7 +27,7 @@ class ShowUser extends Component {
     console.log(this.state.user)
     return (
       
-      <div>
+      <div style={{marginLeft:'1em'}}>
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
         Dates {this.props.match.params.id===this.props.currentUser._id? "you've":"they've"} made:<br/>

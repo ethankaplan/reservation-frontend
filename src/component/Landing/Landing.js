@@ -10,6 +10,7 @@ class Landing extends Component{
 
     render(){
         return(
+            <div style={{marginLeft:'1em'}}>
             <Grid columns={2} floated="left" padded>
                 <Grid.Column>
                 
@@ -32,6 +33,7 @@ class Landing extends Component{
 
             </Grid.Column>
             </Grid>
+            </div>
         )
     }
 

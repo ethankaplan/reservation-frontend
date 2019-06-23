@@ -46,7 +46,7 @@ class Register extends Component {
     const {username, password} = this.state
     
     return(
-      <div >
+      <div style={{marginLeft:'2em'}}>
         {
           this.state.logged
             ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
@@ -68,24 +68,24 @@ class Register extends Component {
 
 const RegisterForm = ({changeHandler, onSubmit, username, password}) =>
 <form onSubmit={e => onSubmit(e)}>
-  <Grid rows={3}   >
+  <Grid rows={3} columns={2}>
   Make a new account:
    
 
   
     <Grid.Row>
-      <Grid.Column >
+      <Grid.Column width={1} >
         <label htmlFor="username">Username: </label>
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column width={3}>
         <input onChange={e => changeHandler(e)}type="text" name='username' placeholder='username' value={username}/>
       </Grid.Column>
     </Grid.Row>
     <Grid.Row>
-      <Grid.Column>
+      <Grid.Column width={1}>
         <label htmlFor="password">Password: </label>
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column width={3}>
         <input onChange={e => changeHandler(e)}type="password" name='password' placeholder='password' value={password}/>
       </Grid.Column>
     </Grid.Row>

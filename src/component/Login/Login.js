@@ -53,7 +53,7 @@ class Login extends Component {
         this.state.logged
         ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
         
-        :  <div><div>{this.state.message}</div>
+        :  <div style={{marginLeft:'1em'}}><div>{this.state.message}</div>
         <Grid columns={2}>
          
           <form onSubmit={this.onSubmit}>
