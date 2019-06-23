@@ -51,7 +51,7 @@ render(){
           active={activeItem === 'Posts'}
           onClick={this.handleItemClick}
         >
-          <NavLink to={routes.POSTS} activeClassName="selected">Make A Date! </NavLink>
+          <NavLink to={routes.POSTS} activeClassName="selected">Build A Date! </NavLink>
         </Menu.Item>
 
         
