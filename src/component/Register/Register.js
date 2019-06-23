@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
+import {Grid, Image} from 'semantic-ui-react'
 
 class Register extends Component {
   state = {
@@ -45,12 +46,12 @@ class Register extends Component {
     const {username, password} = this.state
     
     return(
-      <div>
+      <div >
         {
           this.state.logged
             ? <Redirect to={`/users/view/${this.props.currentUser._id}`} />
             : <div>
-              Make a new account:
+              
               <p>{this.state.message}</p>
               <RegisterForm 
                 changeHandler={this.changeHandler}
@@ -66,13 +67,33 @@ class Register extends Component {
 }
 
 const RegisterForm = ({changeHandler, onSubmit, username, password}) =>
-  <form onSubmit={e => onSubmit(e)}>
-    <label htmlFor="username">Username</label>
-    <input onChange={e => changeHandler(e)}type="text" name='username' placeholder='username' value={username}/>
-    <label htmlFor="password">Password</label>
-    <input onChange={e => changeHandler(e)}type="password" name='password' placeholder='password' value={password}/>
-    <button type='submit'>SUBMIT</button>
-  </form>
+<form onSubmit={e => onSubmit(e)}>
+  <Grid rows={3}   >
+  Make a new account:
+   
 
+  
+    <Grid.Row>
+      <Grid.Column >
+        <label htmlFor="username">Username: </label>
+      </Grid.Column>
+      <Grid.Column>
+        <input onChange={e => changeHandler(e)}type="text" name='username' placeholder='username' value={username}/>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row>
+      <Grid.Column>
+        <label htmlFor="password">Password: </label>
+      </Grid.Column>
+      <Grid.Column>
+        <input onChange={e => changeHandler(e)}type="password" name='password' placeholder='password' value={password}/>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row>
+      <button type='submit'>SUBMIT</button>
+    </Grid.Row>
+  
+  </Grid>
+  </form>
 
 export default Register

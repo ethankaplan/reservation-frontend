@@ -65,8 +65,8 @@ class DateBuilder extends Component{
     }
     handleRadioChange = async(e,name,obj) => {
         e.preventDefault()
-        await this.setState({[e.currentTarget.name]: e.currentTarget.value});
-        await console.log({[e.currentTarget.name]: e.currentTarget.value})
+         this.setState({[e.currentTarget.name]: e.currentTarget.value});
+         console.log({[e.currentTarget.name]: e.currentTarget.value})
       
     }
         

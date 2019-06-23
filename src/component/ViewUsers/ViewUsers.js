@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import UserItem from './UserItem'
+import { Card } from 'semantic-ui-react';
 
 class ViewUsers extends Component{
     state={
@@ -38,15 +39,15 @@ class ViewUsers extends Component{
         
         console.log(this.state.allUsers)
         return(
-            <ul>
+            <Card.Group centered>
                {
                this.state.allUsers.map((user)=>{
         
-            return <UserItem key={user.id} user={user}/>
+            return <UserItem key={user.id} user={user} />
     })
                }
             
-            </ul>
+            </Card.Group>
     )
 }
 }

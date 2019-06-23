@@ -8,7 +8,7 @@ import './NavBar.css'
 class NavBar extends Component {
 
 state={
-  activeItem:""
+  activeItem:"home"
 }
 
 
@@ -31,40 +31,47 @@ render(){
    
     
 
-<Menu>
+<Menu inverted>
         <Menu.Item
           name='Home'
+          
           active={activeItem === 'Home'}
           onClick={this.handleItemClick}
-        > <NavLink exact to={routes.HOME} activeClassName="selected">HOME </NavLink>
+        > <NavLink exact to={routes.HOME} activeClassName="selected">Home</NavLink>
           
         </Menu.Item>
 
-        <Menu.Item name='Users' active={activeItem === 'Users'} onClick={this.handleItemClick}>
-        <NavLink to={routes.USERS} activeClassName="selected">USERS </NavLink>
+        <Menu.Item  name='Users' active={activeItem === 'Users'} onClick={this.handleItemClick}>
+        <NavLink to={routes.USERS} activeClassName="selected">Users</NavLink>
         </Menu.Item>
 
         <Menu.Item
           name='Posts'
+          
           active={activeItem === 'Posts'}
           onClick={this.handleItemClick}
         >
-          <NavLink to={routes.POSTS} activeClassName="selected">POSTS </NavLink>
+          <NavLink to={routes.POSTS} activeClassName="selected">Make A Date! </NavLink>
         </Menu.Item>
 
-        <Menu.Item
-          name='Login'
-          active={activeItem === 'Login'}
-          onClick={this.handleItemClick}
-        >
+        
         {
           this.props.currentUser._id
-            ? <span>hello {this.props.currentUser.username} <button onClick={this.props.doLogout}>LOGOUT</button></span>
-            :  <NavLink to={'/login'} activeClassName="selected">login </NavLink>
-        }   
-        </Menu.Item>
+            ? <Menu.Menu><Menu.Item ><span>Logged in as {this.props.currentUser.username}</span></Menu.Item>
+            <Menu.Item><button onClick={this.props.doLogout}>LOGOUT</button></Menu.Item></Menu.Menu>
+            :  
+            <Menu.Item
+                name='Login'
+                
+                active={activeItem === 'Login'}
+                onClick={this.handleItemClick}>
+                <NavLink to={'/login'} activeClassName="selected">Login</NavLink>
+            </Menu.Item>
+
+        }
         <Menu.Item
           name='Register'
+          
           active={activeItem === 'Register'}
           onClick={this.handleItemClick}
         >
@@ -74,6 +81,11 @@ render(){
           :  <NavLink to={'/register'} activeClassName="selected">Register </NavLink>
         }
         </Menu.Item>
+        <Menu.Menu position="right" >
+          <Menu.Item >
+          Make a Date App
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
 
 
