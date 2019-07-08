@@ -18,6 +18,7 @@ class Register extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
+    console.log("here")
     const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
         method: 'POST',
         credentials: 'include',
