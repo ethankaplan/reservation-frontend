@@ -25,7 +25,7 @@ class Register extends Component {
         body: JSON.stringify(this.state),
         headers:{
             "Content-type" : 'application/json',
-            "Access-Control-Allow-Origin":true
+            
         }
     })
 
