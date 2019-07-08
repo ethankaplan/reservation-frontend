@@ -12,7 +12,7 @@ import Landing from './component/Landing/Landing'
 
 import * as routes from './constants/routes'
 import './App.css';
-import { isNull } from 'util';
+
 
 
 class App extends Component {
@@ -58,12 +58,12 @@ deleteDate = async (date,id) => {
     method: "DELETE"
   });
   const parsedResponse = await deletedDate.json();
-  console.log(parsedResponse, "parsedResponse in deleteDate");
+  
   this.setState({
     currentUser: parsedResponse.user,
   });
   
-  this.props.history.push(`${routes.USERS}/view/${id}`) 
+  this.props.history.push(`${routes.USERS}/view/${this.state.currentUser._id}`) 
 };
 
 doCreateDate=async()=>{
@@ -75,7 +75,7 @@ doCreateDate=async()=>{
   }
 
   
-  console.log(newDate)
+  
   
     try {
       console.log('create hit')
@@ -87,9 +87,9 @@ doCreateDate=async()=>{
                 'Content-Type': 'application/json'
             }
         })
-        console.log(postToUser)
+        
     } catch (e) {
-        console.log(e)
+        
 }
 
   this.props.history.push(`${routes.USERS}/view/${this.state.currentUser._id}`) 
@@ -104,7 +104,7 @@ doCreateDate=async()=>{
 
 
 formHandleSubmit=async(e,act,din,loc)=>{
-  console.log(din)
+  
   e.preventDefault()
   await this.setState({
     activityObj:act,

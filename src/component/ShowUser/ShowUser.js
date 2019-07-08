@@ -5,14 +5,16 @@ import DateList from '../ShowMadeDates/DateList'
 
 class ShowUser extends Component {
   state = {
-    user:{}
+    user:{},
+    ref:false
   }
-
+  
   componentDidMount() {
     this.doGetUser()
       .then(({user}) => this.setState({user}))
   }
 
+  
   doGetUser = async () => {
     try {
       const user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/view/${this.props.match.params.id}`)
@@ -31,7 +33,7 @@ class ShowUser extends Component {
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
         Dates {this.props.match.params.id===this.props.currentUser._id? "you've":"they've"} made:<br/>
-        <DateList deleteDate={this.props.deleteDate} dates={this.state.user.dates} id={this.state.user._id}/>
+        <DateList deleteDate={this.props.deleteDate}  dates={this.state.user.dates} id={this.state.user._id}/>
         
 
       </div>

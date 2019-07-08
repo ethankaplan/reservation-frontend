@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { Redirect } from 'react-router-dom'
+
 import ViewResults from './ViewResults'
-import {Button, Grid,Form, Input} from 'semantic-ui-react'
+import {Button, Grid,Form, Input, Container} from 'semantic-ui-react'
 
 class DateBuilder extends Component{
     state = {
@@ -79,7 +79,7 @@ class DateBuilder extends Component{
       render(){
           return(
             
-            <div style={{marginLeft:'1em', marginRight:'1em'}}>
+            <Container textAlign='center' style={{ margin: '.5em 0em 0em', padding: '0em 0em' }}>
               
 
               <Form onSubmit ={ (e) => this.handleSubmit(e)}
@@ -122,7 +122,7 @@ class DateBuilder extends Component{
                     <Button primary type="submit">SUBMIT DATE</Button>
                 :
                     <Button primary disabled>{this.props.currentUser.id?"MAKE A DATE":"LOG IN"} TO SUBMIT</Button>}
-               <Grid columns={2} divided>
+               <Grid columns={2} >
                    <Grid.Column>
                     <h2>{this.state.location}'s Activities</h2><br/>
                     
@@ -141,7 +141,7 @@ class DateBuilder extends Component{
             </form>
             }
             
-            </div>
+            </Container>
           )
     
       }

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import DateItem from './DateItem'
 class DateList extends Component{
     state={
-        allDates:this.props.dates
+        allDates:this.props.dates,
+        
     }
     
     
@@ -19,7 +20,7 @@ class DateList extends Component{
             if(this.props.dates.length>0){
                 allResults = this.props.dates.map((date)=>{
             return <div><DateItem deleteDate={this.props.deleteDate} loc={date.location} act={date.activity} din={date.dinner}/>
-            <button onClick={()=>{this.props.deleteDate(date,this.props.id); this.setState({})}}>DELETE</button></div>
+            <button onClick={()=>{this.props.deleteDate(date,this.props.id)}}>DELETE</button></div>
         })}}else{
          allResults=<div>No dates yet!</div>
         }
