@@ -25,6 +25,9 @@ class Register extends Component {
         body: JSON.stringify(this.state),
         headers:{
             "Content-type" : 'application/json',
+            'Access-Control-Allow-Origin':  'https://secure-savannah-81040.herokuapp.com',
+            'Access-Control-Allow-Methods': POST,
+            'Access-Control-Allow-Headers': Content-Type, Authorization
             
         }
     })
