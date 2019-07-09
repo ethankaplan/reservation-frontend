@@ -33,7 +33,8 @@ class ShowUser extends Component {
         Username:<br/>
         <h1>{this.state.user.username}</h1><br/>
         Dates {this.props.match.params.id===this.props.currentUser._id? "you've":"they've"} made:<br/>
-        <DateList deleteDate={this.props.deleteDate}  dates={this.state.user.dates} id={this.state.user._id}/>
+        <DateList thisUserID={this.props.match.params.id} currentUser={this.props.currentUser}
+                  deleteDate={this.props.deleteDate}  dates={this.state.user.dates} id={this.state.user._id}/>
         
 
       </div>

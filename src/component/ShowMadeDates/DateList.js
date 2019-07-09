@@ -20,7 +20,11 @@ class DateList extends Component{
             if(this.props.dates.length>0){
                 allResults = this.props.dates.map((date)=>{
             return <div><DateItem deleteDate={this.props.deleteDate} loc={date.location} act={date.activity} din={date.dinner}/>
-            <button onClick={()=>{this.props.deleteDate(date,this.props.id)}}>DELETE</button></div>
+            {this.props.thisUserID===this.props.currentUser._id?
+            <button onClick={()=>{this.props.deleteDate(date,this.props.id)}}>DELETE</button>
+            :
+            ""}
+            </div>
         })}}else{
          allResults=<div>No dates yet!</div>
         }
